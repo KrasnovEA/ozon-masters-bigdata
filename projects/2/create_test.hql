@@ -1,4 +1,4 @@
-create external table hw2_test(
+create temporary external table hw2_test(
 id int,
 if1 int,
 if2 int,
