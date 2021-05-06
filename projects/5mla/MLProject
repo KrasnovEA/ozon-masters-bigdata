@@ -3,6 +3,6 @@ conda_env: conda.yml
 entry_points:
   main:
     parameters:
-      data_file: path
+      train_path: path
       alpha: {type: float, default: 1.0}
-    command: "python train.py {data_file} --alpha={alpha}"
+    command: "python train.py {train_path} --alpha={alpha}"
