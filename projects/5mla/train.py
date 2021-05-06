@@ -15,10 +15,14 @@ matplotlib.use("Agg")
 def parse_args():
     parser = argparse.ArgumentParser(description="BernoulliNB")
     parser.add_argument(
-        "--alpha",
+        "--model_param1",
         type=float,
         default=1.0,
         help="(default: 1.0)",
+    )
+    parser.add_argument(
+        "--train_path",
+        type=str
     )
     return parser.parse_args()
 
@@ -30,7 +34,7 @@ def main():
     categorical_features = ['cf6', 'cf9', 'cf13', 'cf16', 'cf17', 'cf19', 'cf25', 'cf26']
 
     # prepare train and test data
-    df = pd.read_table(sys.argv[1], sep='\t', names=fields, index_col=False)
+    df = pd.read_table(args.train_path, sep='\t', names=fields, index_col=False)
     X_train, X_test, y_train, y_test = train_test_split(
         df[numeric_features + categorical_features],
         df.iloc[:, 1],
@@ -42,7 +46,7 @@ def main():
 
     with mlflow.start_run():
         params = {
-            'alpha': args.alpha
+            'alpha': args.model_param1
         }
         numeric_transformer = Pipeline(steps=[
             ('imputer', SimpleImputer(strategy='median')),
