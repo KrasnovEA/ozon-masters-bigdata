@@ -10,6 +10,8 @@ import os
 import sys
 import mlflow
 import matplotlib
+import pandas as pd
+
 matplotlib.use("Agg")
 
 def parse_args():
