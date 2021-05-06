@@ -7,4 +7,5 @@ dependencies:
   - pip:
     - mlflow
     - scikit-learn
+    - matplotlib
 
