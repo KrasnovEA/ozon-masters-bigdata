@@ -1,0 +1,8 @@
+name: sklearn_hw5
+conda_env: conda.yml
+entry_points:
+  main:
+    parameters:
+      data_file: path
+      alpha: {type: float, default: 1.0}
+    command: "python train.py {data_file} --alpha={alpha}"
