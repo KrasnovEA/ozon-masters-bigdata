@@ -4,7 +4,8 @@ from sklearn.metrics import accuracy_score, log_loss
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import OneHotEncoder, FunctionTransformer
+from sklearn.preprocessing import OneHotEncoder
+#from sklearn.preprocessing import FunctionTransformer
 from sklearn.naive_bayes import BernoulliNB
 import os
 import sys
@@ -28,8 +29,8 @@ def parse_args():
     )
     return parser.parse_args()
 
-def change_type(df):
-    return df.astype(float)
+#def change_type(df):
+#   return df.astype(float)
 
 def main():
     args = parse_args()
