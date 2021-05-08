@@ -6,7 +6,8 @@ from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import OneHotEncoder
 #from sklearn.preprocessing import FunctionTransformer
-from sklearn.naive_bayes import BernoulliNB
+#from sklearn.naive_bayes import BernoulliNB
+from sklearn.linear_model import LogisticRegression
 import os
 import sys
 import mlflow
@@ -52,7 +53,7 @@ def main():
 
     with mlflow.start_run():
         params = {
-            'alpha': args.model_param1
+            'C': args.model_param1
         }
         numeric_transformer = Pipeline(steps=[
             #('type_change', FunctionTransformer(change_type)),
@@ -72,7 +73,7 @@ def main():
         )
         model = Pipeline(steps=[
             ('preprocessor', preprocessor),
-            ('BNB', BernoulliNB(**params))
+            ('logreg', LogisticRegresiion(**params))
         ])
         model.fit(X_train, y_train)
 
