@@ -73,7 +73,7 @@ def main():
         )
         model = Pipeline(steps=[
             ('preprocessor', preprocessor),
-            ('logreg', LogisticRegresiion(**params))
+            ('logreg', LogisticRegression(**params))
         ])
         model.fit(X_train, y_train)
 
