@@ -4,7 +4,7 @@ from sklearn.metrics import accuracy_score, log_loss
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import OneHotEncoder, FunctionTransformer
 from sklearn.naive_bayes import BernoulliNB
 import os
 import sys
@@ -27,6 +27,9 @@ def parse_args():
         type=str
     )
     return parser.parse_args()
+
+def change_type(df):
+    return df.astype(float)
 
 def main():
     args = parse_args()
@@ -51,6 +54,7 @@ def main():
             'alpha': args.model_param1
         }
         numeric_transformer = Pipeline(steps=[
+            ('type_change', FunctionTransformer(change_type)),
             ('imputer', SimpleImputer(strategy='median')),
         ])
         
