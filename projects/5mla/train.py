@@ -54,7 +54,7 @@ def main():
             'alpha': args.model_param1
         }
         numeric_transformer = Pipeline(steps=[
-            ('type_change', FunctionTransformer(change_type)),
+            #('type_change', FunctionTransformer(change_type)),
             ('imputer', SimpleImputer(strategy='median')),
         ])
         
