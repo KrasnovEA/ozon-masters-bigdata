@@ -31,7 +31,7 @@ def parse_args():
     return parser.parse_args()
 
 def change_type(df):
-    return df.astype(float)
+    return df.astype(int)
 
 def main():
     args = parse_args()
@@ -42,6 +42,7 @@ def main():
 
     # prepare train and test data
     df = pd.read_table(args.train_path, sep='\t', names=fields, index_col=False)
+    df = df[df.isna().sum(axis=1) == 0]
     X_train, X_test, y_train, y_test = train_test_split(
         df[numeric_features + categorical_features],
         df.iloc[:, 1],
