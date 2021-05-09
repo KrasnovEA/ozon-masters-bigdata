@@ -43,6 +43,7 @@ def main():
     # prepare train and test data
     df = pd.read_table(args.train_path, sep='\t', names=fields, index_col=False)
     df = df[df.isna().sum(axis=1) == 0]
+    df[numeric_features] = df[numeric_features].astype(int)
     X_train, X_test, y_train, y_test = train_test_split(
         df[numeric_features + categorical_features],
         df.iloc[:, 1],
@@ -57,7 +58,7 @@ def main():
             'C': args.model_param1
         }
         numeric_transformer = Pipeline(steps=[
-            ('type_change', FunctionTransformer(change_type)),
+            #('type_change', FunctionTransformer(change_type)),
             ('imputer', SimpleImputer(strategy='median')),
         ])
         
